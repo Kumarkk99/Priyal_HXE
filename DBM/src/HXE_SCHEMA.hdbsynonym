@@ -1,0 +1,32 @@
+{
+  "HXE_PRJ.DBM::ORG_STRUCTURE": {
+    "target": {
+      "object": "ORG_STRUCTURE",
+      "schema": "HXE_SAMPLE"
+    }
+  },
+  "HXE_PRJ.DBM::SN_PROD_SALES": {
+    "target": {
+      "object": "PRODUCTSALE",
+      "schema": "HXE_SAMPLE"
+    }
+  },
+  "HXE_PRJ.DBM::SN_PROD": {
+    "target": {
+      "object": "PRODUCT",
+      "schema": "HXE_SAMPLE"
+    }
+  },
+  "HXE_PRJ.DBM::SN_HIER_NODE_KEYS": {
+    "target": {
+      "object": "HIER_NODE_KEYS",
+      "schema": "HXE_SAMPLE"
+    }
+  },
+  "HXE_PRJ.DBM::HIER_NODE_TEXT": {
+    "target": {
+      "object": "HIER_NODE_TEXT",
+      "schema": "HXE_SAMPLE"
+    }
+  }
+}

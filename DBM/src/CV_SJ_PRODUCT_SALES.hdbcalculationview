@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HXE_PRJ.DBM::CV_SJ_PRODUCT_SALES" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_SJ_PRODUCT_SALES"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HXE_PRJ.DBM::SN_PROD">
+    <resourceUri>HXE_PRJ.DBM::SN_PROD</resourceUri>
+  </DataSource>
+  <DataSource id="HXE_PRJ.DBM::SN_PROD_SALES">
+    <resourceUri>HXE_PRJ.DBM::SN_PROD_SALES</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="PROD">
+    <viewAttributes>
+      <viewAttribute id="PRODID"/>
+      <viewAttribute id="PRODNAME"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="HXE_PRJ.DBM::SN_PROD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODID" source="PRODID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODNAME" source="PRODNAME"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="PROD_SALES">
+    <viewAttributes>
+      <viewAttribute id="PRODID"/>
+      <viewAttribute id="SALEQTY"/>
+      <viewAttribute id="SALEDATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="HXE_PRJ.DBM::SN_PROD_SALES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALEQTY" source="SALEQTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALEDATE" source="SALEDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODID" source="PRODID"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="JN_PROD_SALES" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PRODID" aggregationType="sum"/>
+      <viewAttribute id="PRODNAME"/>
+      <viewAttribute id="SALEQTY" aggregationType="sum"/>
+      <viewAttribute id="SALEDATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="PROD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODID" source="PRODID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODNAME" source="PRODNAME"/>
+    </input>
+    <input node="PROD_SALES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALEQTY" source="SALEQTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALEDATE" source="SALEDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODID" source="PRODID"/>
+    </input>
+    <joinAttribute name="PRODID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="JN_PROD_SALES">
+  <attributes>
+    <attribute id="PRODID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODID"/>
+      <keyMapping columnObjectName="JN_PROD_SALES" columnName="PRODID"/>
+    </attribute>
+    <attribute id="PRODNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODNAME"/>
+      <keyMapping columnObjectName="JN_PROD_SALES" columnName="PRODNAME"/>
+    </attribute>
+    <attribute id="SALEDATE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALEDATE"/>
+      <keyMapping columnObjectName="JN_PROD_SALES" columnName="SALEDATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="SALEQTY" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALEQTY"/>
+      <measureMapping columnObjectName="JN_PROD_SALES" columnName="SALEQTY"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+  <sharedDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221.11302679000914" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="PROD" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92.00000000000001" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="PROD_SALES" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.00000000000006" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="JN_PROD_SALES" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221.11302679000914" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="PROD" modelObjectNameSpace="JN_PROD_SALES" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="149.5615234375"/>
+    </shape>
+    <shape modelObjectName="PROD_SALES" modelObjectNameSpace="JN_PROD_SALES" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="145.3515625"/>
+    </shape>
+    <shape modelObjectName="JN_PROD_SALES" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

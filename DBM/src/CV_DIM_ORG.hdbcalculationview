@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HXE_PRJ.DBM::CV_DIM_ORG" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_DIM_ORG"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HXE_PRJ.DBM::ORG_STRUCTURE">
+    <resourceUri>HXE_PRJ.DBM::ORG_STRUCTURE</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="HXE_PRJ.DBM::ORG_STRUCTURE">
+  <attributes>
+    <attribute id="ORG_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORG_ID"/>
+      <keyMapping columnObjectName="ORG_STRUCTURE" columnName="ORG_ID"/>
+    </attribute>
+    <attribute id="PARENT_ID_COL" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARENT_ID"/>
+      <keyMapping columnObjectName="ORG_STRUCTURE" columnName="PARENT_ID"/>
+    </attribute>
+    <attribute id="JOB_TITLE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="JOB_TITLE"/>
+      <keyMapping columnObjectName="ORG_STRUCTURE" columnName="JOB_TITLE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="CC_CASE" order="4" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="VARCHAR" expressionLanguage="COLUMN_ENGINE" length="13">
+        <formula>Case(string(&quot;ORG_ID&quot;),'1','X','Y')</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

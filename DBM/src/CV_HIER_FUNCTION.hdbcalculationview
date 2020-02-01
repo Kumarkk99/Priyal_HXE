@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="HXE_PRJ.DBM::CV_HIER_FUNCTION" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_HIER_FUNCTION"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HXE_PRJ.DBM::SN_HIER_NODE_KEYS">
+    <resourceUri>HXE_PRJ.DBM::SN_HIER_NODE_KEYS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:HierarchyView" id="Hierarchy_1" function="HIERARCHY_LEVELED">
+    <viewAttributes>
+      <viewAttribute datatype="BIGINT" id="HIERARCHY_RANK"/>
+      <viewAttribute datatype="BIGINT" id="HIERARCHY_TREE_SIZE"/>
+      <viewAttribute datatype="BIGINT" id="HIERARCHY_PARENT_RANK"/>
+      <viewAttribute datatype="INTEGER" id="HIERARCHY_LEVEL"/>
+      <viewAttribute datatype="TINYINT" id="HIERARCHY_IS_CYCLE"/>
+      <viewAttribute datatype="TINYINT" id="HIERARCHY_IS_ORPHAN"/>
+      <viewAttribute datatype="NVARCHAR" length="256" id="HIERARCHY_LEVEL_NAME"/>
+      <viewAttribute datatype="NVARCHAR" length="5000" id="PARENT_ID"/>
+      <viewAttribute datatype="NVARCHAR" length="5000" id="NODE_ID"/>
+      <viewAttribute datatype="SMALLINT" id="PARENTID"/>
+      <viewAttribute datatype="SMALLINT" id="NODEID"/>
+      <viewAttribute datatype="SMALLINT" id="CHILDID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="HXE_PRJ.DBM::SN_HIER_NODE_KEYS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARENTID" source="PARENTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NODEID" source="NODEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHILDID" source="CHILDID"/>
+    </input>
+    <hierarchyLeveledParameterization>
+      <levels>
+        <level>PARENTID</level>
+        <level>CHILDID</level>
+      </levels>
+    </hierarchyLeveledParameterization>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Hierarchy_1">
+  <attributes>
+    <attribute id="PARENT_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARENT_ID"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="PARENT_ID"/>
+    </attribute>
+    <attribute id="NODE_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NODE_ID"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="NODE_ID"/>
+    </attribute>
+    <attribute id="PARENTID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARENTID"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="PARENTID"/>
+    </attribute>
+    <attribute id="NODEID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NODEID"/>
+      <keyMapping columnObjectName="Hierarchy_1" columnName="NODEID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Hierarchy_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-60" y="216"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
